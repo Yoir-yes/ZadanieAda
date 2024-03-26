@@ -33,6 +33,18 @@
     </property>
     <item row="2" column="2">
      <layout class="QFormLayout" name="formLayout_2">
+      <property name="horizontalSpacing">
+       <number>20</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>20</number>
+      </property>
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label_3">
         <property name="font">
@@ -46,7 +58,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="password">
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
         </property>
@@ -60,7 +72,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QProgressBar" name="progressBar">
+       <widget class="QProgressBar" name="passwordPower">
         <property name="value">
          <number>0</number>
         </property>
@@ -128,6 +140,18 @@
     </item>
     <item row="2" column="0">
      <layout class="QFormLayout" name="formLayout">
+      <property name="horizontalSpacing">
+       <number>20</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>20</number>
+      </property>
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>20</number>
+      </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label_4">
         <property name="font">
@@ -141,7 +165,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="passwordType">
         <item>
          <property name="text">
           <string>Hasło</string>
@@ -150,11 +174,6 @@
         <item>
          <property name="text">
           <string>Pin</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string/>
          </property>
         </item>
        </widget>
@@ -172,7 +191,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QSpinBox" name="spinBox"/>
+       <widget class="QSpinBox" name="passwordLength"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_6">
@@ -188,36 +207,39 @@
       </item>
       <item row="2" column="1">
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
         <item>
-         <widget class="QCheckBox" name="checkBox">
+         <widget class="QCheckBox" name="specialChar">
           <property name="text">
            <string>Znaki specjalne</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_2">
+         <widget class="QCheckBox" name="numbers">
           <property name="text">
            <string>Cyfry</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_3">
+         <widget class="QCheckBox" name="capitalChars">
           <property name="text">
            <string>Duże litery</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_4">
+         <widget class="QCheckBox" name="easter">
           <property name="text">
            <string>Zając wielkanocny</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_5">
+         <widget class="QCheckBox" name="word">
           <property name="text">
            <string>Słowo</string>
           </property>
@@ -226,7 +248,7 @@
        </layout>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="generate">
         <property name="text">
          <string>Generuj</string>
         </property>
@@ -235,16 +257,28 @@
      </layout>
     </item>
     <item row="3" column="2">
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="image">
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </item>
     <item row="3" column="0">
-     <widget class="QLabel" name="label_9">
+     <widget class="QLabel" name="genertedPassword">
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+      <property name="margin">
+       <number>0</number>
       </property>
      </widget>
     </item>
