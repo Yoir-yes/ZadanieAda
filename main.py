@@ -16,47 +16,63 @@ class MyForm(QDialog):
         self.ui.generate.clicked.connect(self.generate)
         self.ui.easter.clicked.connect(self.easterClicked)
 
-        #zasobnik znakow
+        # Zasób znaków
         self.smallChars = [l for l in string.ascii_lowercase]
         self.capitalChars = [l for l in string.ascii_uppercase]
-        self.numbers = [str(i) for i in range(0,10)]
+        self.numbers = [str(i) for i in range(0, 10)]
         self.specialChars = [l for l in string.punctuation]
 
-
     def generate(self):
-        length = self.ui.passwordLength.text()
-        type = self.ui.passwordType.currentText()
-        pasword = ''
-        if type == 'Pin':
-            for i in range(int(length)):
-                pasword += str(random.randint(0,9))
-        else:
-            elements = [self.smallChars]
-            if self.ui.specialChar.isChecked():
-                elements.append(self.specialChars)
-            if self.ui.numbers.isChecked():
-                elements.append(self.numbers)
-            if self.ui.capitalChars.isChecked():
-                elements.append(self.capitalChars)
+        while True:
+            length = int(self.ui.passwordLength.text())
+            password_type = self.ui.passwordType.currentText()
+            password = ''
 
-            for i in range(int(length)):
-                type = random.randint(0, len(elements)-1)
-                pasword += elements[type][random.randint(0, len(elements[type])-1)]
+            if password_type == 'Pin':
+                for _ in range(length):
+                    password += str(random.randint(0, 9))
+            else:
+                elements = []
+                elements.append(self.smallChars)
+                if self.ui.capitalChars.isChecked():
+                    elements.append(self.capitalChars)
+                if self.ui.numbers.isChecked():
+                    elements.append(self.numbers)
+                if self.ui.specialChar.isChecked():
+                    elements.append(self.specialChars)
 
-            if self.ui.easter.isChecked() and len(pasword) >= 5:
-                max_index = len(pasword) - 6
-                start_index = random.randint(0,max_index)
-                new_pasword = ''
+                if not elements:
+                    self.ui.genertedPassword.setText("No character type selected")
+                    return
+
+                for i in range(length):
+                    element_type = random.choice(elements)
+                    password += random.choice(element_type)
+
+            if self.ui.easter.isChecked() and len(password) >= 5:
+                max_index = len(password) - 6
+                start_index = random.randint(0, max_index)
+                new_password = ''
                 easter = 'zając'
-                for i in range(len(pasword)):
-                    if start_index <= i < start_index+5:
-                        new_pasword += easter[i - start_index]
+                for i in range(len(password)):
+                    if start_index <= i < start_index + 5:
+                        new_password += easter[i - start_index]
                     else:
-                        new_pasword += pasword[i]
-                pasword = new_pasword
+                        new_password += password[i]
+                password = new_password
 
+            if self.check_password(password):
+                self.ui.genertedPassword.setText(password)
+                break
 
-        self.ui.genertedPassword.setText(pasword)
+    def check_password(self, password):
+        if self.ui.capitalChars.isChecked() and not any(char.isupper() for char in password):
+            return False
+        if self.ui.numbers.isChecked() and not any(char.isdigit() for char in password):
+            return False
+        if self.ui.specialChar.isChecked() and not any(char in string.punctuation for char in password):
+            return False
+        return True
 
     def easterClicked(self):
         if self.ui.easter.isChecked():
@@ -75,10 +91,8 @@ class MyForm(QDialog):
             self.ui.word.setDisabled(False)
 
 
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     form = MyForm()
     form.show()
-
     sys.exit(app.exec())
