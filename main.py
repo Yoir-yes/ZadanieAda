@@ -41,9 +41,6 @@ class MyForm(QDialog):
                 if self.ui.specialChar.isChecked():
                     elements.append(self.specialChars)
 
-                if not elements:
-                    self.ui.genertedPassword.setText("No character type selected")
-                    return
 
                 for i in range(length):
                     element_type = random.choice(elements)
